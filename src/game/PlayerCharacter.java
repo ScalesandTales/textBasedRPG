@@ -2,7 +2,7 @@ package game;
 public class PlayerCharacter extends Entity {
     
     private String charClass;
-    private int mana;
+    private int mana; 
 
     public PlayerCharacter(String name, String playerClass, int health, int mana)
     {
@@ -24,6 +24,11 @@ public class PlayerCharacter extends Entity {
     public String toString()
     {
         return "Name: " + getName() + "\nClass: " + charClass + "\nHealth: " + getHealth() + "\nMana: " + mana;
+    }
+
+    public String actionList()
+    {
+        return "1: Move\n2: Attack\n3: Defend\n4: Use Item\n5: Cast Spell"; // TODO: implement spell and item systems
     }
 }
 
