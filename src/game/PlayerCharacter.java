@@ -2,13 +2,15 @@ package game;
 public class PlayerCharacter extends Entity {
     
     private String charClass;
-    private int mana; 
+    private int mana;
+    private Inventory inventory;
 
     public PlayerCharacter(String name, String playerClass, int health, int mana)
     {
         super(name, 1, health);
         charClass = playerClass;
         this.mana = mana;
+        inventory = new Inventory();
     }
 
     public String getPCclass()
@@ -21,14 +23,110 @@ public class PlayerCharacter extends Entity {
         return mana;
     }
 
+    public String drinkHealthPotion()
+    {
+        if (charClass.equals("fighter") && inventory.getHealingPotions() > 0)
+        {
+            changeHealth(10);
+            if (getHealth() > 75)
+            {
+                changeHealth(-getHealth() - 75);
+            }
+            inventory.changeHealingPotions(-1);
+            return  "\u001b[3m GULP \u001b[0m " + getName() + "'s health is now: " + getHealth();
+        }
+        else if (charClass.equals("bard") && inventory.getHealingPotions() > 0)
+        {
+            changeHealth(10);
+            if (getHealth() > 50)
+            {
+                changeHealth(-getHealth() - 50);
+            }
+            inventory.changeHealingPotions(-1);
+            return  "\u001b[3m GULP \u001b[0m " + getName() + "'s health is now: " + getHealth();
+        }
+        else if (charClass.equals("cleric") && inventory.getHealingPotions() > 0)
+        {
+            changeHealth(10);
+            if (getHealth() > 50)
+            {
+                changeHealth(-getHealth() - 50);
+            }
+            inventory.changeHealingPotions(-1);
+            return  "\u001b[3m GULP \u001b[0m " + getName() + "'s health is now: " + getHealth();
+        }
+        else if (charClass.equals("wizard") && inventory.getHealingPotions() > 0)
+        {
+            changeHealth(10);
+            if (getHealth() > 25)
+            {
+                changeHealth(-getHealth() - 25);
+            }
+            inventory.changeHealingPotions(-1);
+            return  "\u001b[3m GULP \u001b[0m " + getName() + "'s health is now: " + getHealth();
+        }
+        else
+        {
+            return "No mana potions in inventory";
+        }
+    }
+
+    
+    public String drinkManaPotion()
+    {
+        if (charClass.equals("fighter"))
+        {
+            return "No mana pool";
+        }
+        else if (charClass.equals("Bard") && inventory.getManaPotions() > 0)
+        {
+            mana += 10;
+            if (mana > 25)
+            {
+                mana -= mana - 25;
+            }
+            inventory.changeManaPotions(-1);
+            return "\u001b[3m GULP \u001b[0m " + getName() + "'s mana is now: " + getMana();
+        }
+        else if (charClass.equals("cleric") && inventory.getManaPotions() > 0)
+        {
+            mana += 10;
+            if (mana > 50)
+            {
+                mana -= mana - 50;
+            }
+            inventory.changeManaPotions(-1);
+            return "\u001b[3m GULP \u001b[0m " + getName() + "'s mana is now: " + getMana();
+        }
+        else if (charClass.equals("wizard") && inventory.getManaPotions() > 0)
+        {
+            mana += 10;
+            if (mana > 75)
+            {
+                mana -= mana - 75;
+            }
+            inventory.changeManaPotions(-1);
+            return "\u001b[3m GULP \u001b[0m " + getName() + "'s mana is now: " + getMana();
+        }
+        else
+        {
+            return "No mana potions in inventory";
+        }
+    }
+
+    public Inventory getInventory()
+    {
+        return inventory;
+    }
+
+    public String playerActionList()
+    {
+        return "1: Move\n2: Attack\n3: Defend\n4: Use Item\n5: Cast Spell"; // TODO: implement spell and item systems
+    }
+
     public String toString()
     {
         return "Name: " + getName() + "\nClass: " + charClass + "\nHealth: " + getHealth() + "\nMana: " + mana;
-    }
-
-    public String actionList()
-    {
-        return "1: Move\n2: Attack\n3: Defend\n4: Use Item\n5: Cast Spell"; // TODO: implement spell and item systems
     }
 }
 

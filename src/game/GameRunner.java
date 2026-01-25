@@ -66,7 +66,6 @@ public class GameRunner
             // TODO: insert lore and worldbuilding here
 
             System.out.println();
-
             System.out.println("Select: \n" + party.actionList());
             int select = input.nextInt();
             if (select == 1)
@@ -76,6 +75,36 @@ public class GameRunner
                 System.out.println();
                 select = input.nextInt();
                 System.out.println(party.getCharacter(select));
+                System.out.println("\nActions:\n" + party.getCharacter(select).playerActionList());
+                select = input.nextInt();
+                if (select == 1)
+                {
+                    // Move action
+                }
+                else if (select == 2)
+                {
+                    // Attack action
+                }
+                else if (select == 3)
+                {
+                    // Defend action
+                }
+                else if (select == 4)
+                {
+                    System.out.println();
+                }
+                else if (select == 5)
+                {
+
+                }
+                else if (select == 6)
+                {
+
+                }
+                else
+                {
+                    System.out.println("Invalid action");
+                }
             }
         }
         else
