@@ -5,13 +5,11 @@ public class Party {
     private int partySize;
     private PlayerCharacter[] charList;
     private int counter = 0;
-    private boolean inCombat;
     
     public Party(String inName, int size)
     {
         partyName = inName;
         partySize = size;
-        inCombat = false;
         charList  = new PlayerCharacter[size];
     }
     
@@ -23,16 +21,6 @@ public class Party {
     public int getSize()
     {
         return partySize;
-    }
-
-    public boolean getStatus()
-    {
-        return inCombat;
-    }
-
-    public void setStatus(boolean set)
-    {
-        inCombat = set;
     }
 
     public void addCharacter(PlayerCharacter pc)
@@ -48,14 +36,7 @@ public class Party {
 
     public String actionList()
     {
-        if (getStatus())
-        {
-            return ""; // TODO: combat actions to be implemented
-        }
-        else
-        {
-            return "1: Inspect character"; // TODO: other options to be implemented
-        }
+        return "1: Characters"; // TODO: other options to be implemented
     }
 
     public void partyList()

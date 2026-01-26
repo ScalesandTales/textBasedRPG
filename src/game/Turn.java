@@ -1,8 +1,53 @@
 package game;
-import game.characters.*;
-import game.enemies.*;
+import java.util.Scanner;
 
-public class Turn 
+public class Turn
 {
-    
+    public static void turn(Party party, Scanner input)
+    {
+        System.out.println("Select: \n" + party.actionList());
+        int select = input.nextInt();
+        int characterSelect = select;
+        if (select == 1)
+        {
+            System.out.println("Select character:");
+            party.partyList();
+            System.out.println();
+            characterSelect = input.nextInt();
+            System.out.println(party.getCharacter(characterSelect));
+            System.out.println("\nActions:\n" + party.getCharacter(characterSelect).playerActionList());
+            select = input.nextInt();
+            if (select == 1)
+            {
+                // Move action
+            }
+            else if (select == 2)
+            {
+                // Attack action
+            }
+            else if (select == 3)
+            {
+                // Defend action
+            }
+            else if (select == 4)
+            {
+                System.out.println("Which item do you want to use?\n" + party.getCharacter(characterSelect).getInventory());
+                input.nextLine();
+                String itemSelect = input.nextLine();
+                System.out.println(party.getCharacter(characterSelect).useItem(itemSelect));
+            }
+            else if (select == 5)
+            {
+
+            }
+            else if (select == 6)
+            {
+
+            }
+            else
+            {
+                System.out.println("Invalid action");
+            }
+        }
+    }
 }

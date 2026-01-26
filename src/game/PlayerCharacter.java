@@ -30,7 +30,7 @@ public class PlayerCharacter extends Entity {
             changeHealth(10);
             if (getHealth() > 75)
             {
-                changeHealth(-getHealth() - 75);
+                setHealth(75);
             }
             inventory.changeHealingPotions(-1);
             return  "\u001b[3m GULP \u001b[0m " + getName() + "'s health is now: " + getHealth();
@@ -40,7 +40,7 @@ public class PlayerCharacter extends Entity {
             changeHealth(10);
             if (getHealth() > 50)
             {
-                changeHealth(-getHealth() - 50);
+                setHealth(50);
             }
             inventory.changeHealingPotions(-1);
             return  "\u001b[3m GULP \u001b[0m " + getName() + "'s health is now: " + getHealth();
@@ -50,7 +50,7 @@ public class PlayerCharacter extends Entity {
             changeHealth(10);
             if (getHealth() > 50)
             {
-                changeHealth(-getHealth() - 50);
+                setHealth(50);
             }
             inventory.changeHealingPotions(-1);
             return  "\u001b[3m GULP \u001b[0m " + getName() + "'s health is now: " + getHealth();
@@ -60,7 +60,7 @@ public class PlayerCharacter extends Entity {
             changeHealth(10);
             if (getHealth() > 25)
             {
-                changeHealth(-getHealth() - 25);
+                setHealth(25);
             }
             inventory.changeHealingPotions(-1);
             return  "\u001b[3m GULP \u001b[0m " + getName() + "'s health is now: " + getHealth();
@@ -111,6 +111,30 @@ public class PlayerCharacter extends Entity {
         else
         {
             return "No mana potions in inventory";
+        }
+    }
+
+    public String useItem(String use)
+    {
+        if (use.equals("healing potion"))
+        {
+            return drinkHealthPotion();
+        }
+        else if (use.equals("mana potion"))
+        {
+            return drinkManaPotion();
+        }
+        else if (use.equals("gold"))
+        {
+            return "not implemented yet";
+        }
+        else if (use.equals("rope"))
+        {
+            return "not implemented yet";
+        }
+        else
+        {
+            return "Invalid selection";
         }
     }
 

@@ -15,6 +15,7 @@ public class Inventory {
         ropeLength = 30.0;
     }
 
+
     public int getHealingPotions()
     {
         return healingPotions;
