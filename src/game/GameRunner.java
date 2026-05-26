@@ -1,6 +1,6 @@
 package game;
-import java.util.Scanner;
 import game.characters.*;
+import java.util.Scanner;
 
 public class GameRunner
 {
@@ -69,6 +69,10 @@ public class GameRunner
             // }
 
             System.out.println();
+
+            GameWorld world = new GameWorld();
+            world.printMap();
+            
 
             // TODO: insert lore and worldbuilding here
 
