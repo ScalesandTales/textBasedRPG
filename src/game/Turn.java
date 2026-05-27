@@ -3,6 +3,13 @@ import java.util.Scanner;
 
 public class Turn
 {
+    private GameWorld world;
+
+    public Turn(GameWorld input)
+    {
+        world = input;
+    }
+    
     public static void turn(Party party, Scanner input)
     {
         System.out.println("Select: \n" + party.actionList());
@@ -19,28 +26,24 @@ public class Turn
             select = input.nextInt();
             if (select == 1)
             {
-                // Move action
+                // Attack action
             }
             else if (select == 2)
             {
-                // Attack action
-            }
-            else if (select == 3)
-            {
                 // Defend action
             }
-            else if (select == 4)
+            else if (select == 3)
             {
                 System.out.println("Which item do you want to use?\n" + party.getCharacter(characterSelect).getInventory());
                 input.nextLine();
                 String itemSelect = input.nextLine();
                 System.out.println(party.getCharacter(characterSelect).useItem(itemSelect));
             }
-            else if (select == 5)
+            else if (select == 4)
             {
 
             }
-            else if (select == 6)
+            else if (select == 5)
             {
 
             }
@@ -48,6 +51,10 @@ public class Turn
             {
                 System.out.println("Invalid action");
             }
+        }
+        else if (select == 2)
+        {
+            world.printMap();
         }
     }
 }

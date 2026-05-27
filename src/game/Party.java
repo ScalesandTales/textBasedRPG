@@ -36,7 +36,7 @@ public class Party {
 
     public String actionList()
     {
-        return "1: Characters"; // TODO: other options to be implemented
+        return "1: Character Select\n2: Map\n3: Move"; // TODO: other options to be implemented
     }
 
     public void partyList()

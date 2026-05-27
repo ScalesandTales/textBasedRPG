@@ -1,63 +1,83 @@
 package game;
 
-public class GameWorld {
-    
+public class GameWorld 
+{
     private Tile[][] map = new Tile[5][5];
 
-    public GameWorld()
+    public GameWorld() 
     {
-        for (int i = 0; i < map.length; i++)
-        {
-            for (int j = 0; j < map[0].length; j++)
+        for (int row = 0; row < map.length; row++) {
+            for (int col = 0; col < map[row].length; col++) 
             {
-                map[i][j] = new Tile();
+                map[row][col] = new Tile();
             }
         }
     }
 
     public void printMap()
     {
-        for (int row = 0; row < map.length; row++)
+        for (int mapRow = 0; mapRow < map.length; mapRow++) 
         {
-            for (int col = 0; col < map[0].length; col++)
+            for (int tileLine = 0; tileLine < 5; tileLine++) 
             {
-                System.out.println(map[row][col]);
+                for (int mapCol = 0; mapCol < map[mapRow].length; mapCol++) 
+                {
+                    System.out.print(map[mapRow][mapCol].tile[tileLine]);
+                }
+                System.out.println();
             }
         }
     }
-    
-    private class Tile {
-        
-        private static final String[] tileGrass = {"\"\"\"\"\"", "\"\"\"\"\"", "\"\"\"\"\"", "\"\"\"\"\"", "\"\"\"\"\""};
-        private static final String[] tileWater = {"~~~~~", "~~~~~", "~~~~~", "~~~~~", "~~~~~"};
-        private final String[] tile;
-    
-        public Tile()
+
+    private class Tile 
+    {
+
+        private static String[] tileGrass = 
         {
-            int tileType = (int)(Math.random() * 2);
-    
-            if (tileType == 0)
+            "...........",
+            "...........",
+            "...........",
+            "...........",
+            "..........."
+        };
+
+        private static String[] tileWater = 
+        {
+            "~~~~~~~~~~~",
+            "~~~~~~~~~~~",
+            "~~~~~~~~~~~",
+            "~~~~~~~~~~~",
+            "~~~~~~~~~~~"
+        };
+
+        private static String[] tileForest =
+        {
+            "# # # # # #",
+            "| | | | | |",
+            "           ",
+            "# # # # # #",
+            "| | | | | |"
+
+        };
+
+        private final String[] tile;
+
+        public Tile() {
+
+            int tileType = (int) (Math.random() * 3);
+
+            if (tileType == 0) 
             {
                 tile = tileGrass;
-            }
-            else if (tileType == 1)
+            } 
+            else if (tileType == 2) 
             {
                 tile = tileWater;
             }
             else
             {
-                tile = tileGrass;
+                tile = tileForest;
             }
-
-        }
-        public String toString()
-        {
-            String print = "";
-            for (String thing : tile)
-            {
-                print += thing + "\n";
-            }
-            return print;
         }
     }
 }

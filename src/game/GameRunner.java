@@ -69,11 +69,11 @@ public class GameRunner
             // }
 
             System.out.println();
-
+            
+            System.out.println("The Map:");
             GameWorld world = new GameWorld();
             world.printMap();
             
-
             // TODO: insert lore and worldbuilding here
 
             System.out.println();
