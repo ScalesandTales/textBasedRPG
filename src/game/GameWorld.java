@@ -2,7 +2,7 @@ package game;
 
 public class GameWorld 
 {
-    private Tile[][] map = new Tile[5][5];
+    private static Tile[][] map = new Tile[5][5];
 
     public GameWorld() 
     {
@@ -14,72 +14,20 @@ public class GameWorld
         }
     }
 
-    public void printMap()
+    public static void printMap(int x, int y)
     {
+        map[x][y] = new Tile(map[x][y].getTileType());
+
         for (int mapRow = 0; mapRow < map.length; mapRow++) 
         {
             for (int tileLine = 0; tileLine < 5; tileLine++) 
             {
                 for (int mapCol = 0; mapCol < map[mapRow].length; mapCol++) 
                 {
-                    System.out.print(map[mapRow][mapCol].tile[tileLine]);
+                    System.out.print(map[mapRow][mapCol].getTile()[tileLine]);
                 }
                 System.out.println();
             }
         }
     }
-
-    private class Tile 
-    {
-
-        private static String[] tileGrass = 
-        {
-            "...........",
-            "...........",
-            "...........",
-            "...........",
-            "..........."
-        };
-
-        private static String[] tileWater = 
-        {
-            "~~~~~~~~~~~",
-            "~~~~~~~~~~~",
-            "~~~~~~~~~~~",
-            "~~~~~~~~~~~",
-            "~~~~~~~~~~~"
-        };
-
-        private static String[] tileForest =
-        {
-            "# # # # # #",
-            "| | | | | |",
-            "           ",
-            "# # # # # #",
-            "| | | | | |"
-
-        };
-
-        private final String[] tile;
-
-        public Tile() {
-
-            int tileType = (int) (Math.random() * 3);
-
-            if (tileType == 0) 
-            {
-                tile = tileGrass;
-            } 
-            else if (tileType == 2) 
-            {
-                tile = tileWater;
-            }
-            else
-            {
-                tile = tileForest;
-            }
-        }
-    }
 }
-
-

@@ -54,7 +54,8 @@ public class Turn
         }
         else if (select == 2)
         {
-            world.printMap();
+            System.out.println("Map:");
+            GameWorld.printMap(2, 2);
         }
     }
 }
