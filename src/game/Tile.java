@@ -80,7 +80,6 @@ class Tile
         {
             tile = tileForest;
             this.tileType = tileType;
-
         }
     }
 

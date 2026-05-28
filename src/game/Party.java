@@ -71,11 +71,11 @@ public class Party {
         }
         else if (in.equals("<") && partyY - 1 > -1)
         {
-            partyX -= 1;
+            partyY -= 1;
         }
         else if (in.equals(">") && partyY + 1 < 5)
         {
-            partyX += 1;
+            partyY += 1;
         }
         else
         {

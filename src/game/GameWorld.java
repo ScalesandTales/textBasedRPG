@@ -2,7 +2,8 @@ package game;
 
 public class GameWorld 
 {
-    private static Tile[][] map = new Tile[5][5];
+    private static final Tile[][] map = new Tile[5][5];
+    private static Tile[][] trackMap;
 
     public GameWorld() 
     {
@@ -12,13 +13,13 @@ public class GameWorld
                 map[row][col] = new Tile();
             }
         }
+        trackMap = map;
     }
 
     public static void printMap(int x, int y)
     {
-        Tile[][] trackMap = map;
-
-        trackMap[x][y] = new Tile(trackMap[x][y].getTileType());
+        trackMap = map;
+        trackMap[x][y] = new Tile(map[x][y].getTileType());
 
         for (int mapRow = 0; mapRow < trackMap.length; mapRow++) 
         {
