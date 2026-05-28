@@ -2,14 +2,7 @@ package game;
 import java.util.Scanner;
 
 public class Turn
-{
-    private GameWorld world;
-
-    public Turn(GameWorld input)
-    {
-        world = input;
-    }
-    
+{   
     public static void turn(Party party, Scanner input)
     {
         System.out.println("Select: \n" + party.actionList());
@@ -55,7 +48,11 @@ public class Turn
         else if (select == 2)
         {
             System.out.println("Map:");
-            GameWorld.printMap(2, 2);
+            GameWorld.printMap(party.getX(), party.getY());
+        }
+        else if (select == 3)
+        {
+            
         }
     }
 }

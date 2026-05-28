@@ -5,6 +5,8 @@ public class Party {
     private int partySize;
     private PlayerCharacter[] charList;
     private int counter = 0;
+    private int partyX = 2;
+    private int partyY = 2;
     
     public Party(String inName, int size)
     {
@@ -45,5 +47,15 @@ public class Party {
         {
             System.out.println(i + ". " + charList[i].getName());
         }
+    }
+
+    public int getX()
+    {
+        return partyX;
+    }
+
+    public int getY()
+    {
+        return partyY;
     }
 }
