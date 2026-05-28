@@ -13,12 +13,20 @@ public class GameWorld
                 map[row][col] = new Tile();
             }
         }
-        trackMap = map;
     }
 
     public static void printMap(int x, int y)
     {
-        trackMap = map;
+        trackMap = new Tile[map.length][map[0].length];
+
+        for (int row = 0; row < map.length; row++)
+        {  
+            for (int col = 0; col < map[row].length; col++)
+            {
+                trackMap[row][col] = map[row][col];
+            }
+        }
+
         trackMap[x][y] = new Tile(map[x][y].getTileType());
 
         for (int mapRow = 0; mapRow < trackMap.length; mapRow++) 

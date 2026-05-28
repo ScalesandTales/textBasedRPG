@@ -53,7 +53,7 @@ public class Turn
         else if (select == 3)
         {
             input.nextLine();
-            System.out.println("Left: < | Right > | Up: ^ | Down v");
+            System.out.println("Left: < | Right > | Up: ^ | Down: v");
             String moveSelect = input.nextLine();
             party.moveParty(moveSelect);
             GameWorld.printMap(party.getX(), party.getY());

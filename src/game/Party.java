@@ -65,7 +65,7 @@ public class Party {
         {
             partyX -= 1;
         }
-        else if (in.equals("v") && partyX + 1 < 5)
+        else if (in.equals("v") && partyX + 1 < 6)
         {
             partyX += 1;
         }
@@ -73,7 +73,7 @@ public class Party {
         {
             partyY -= 1;
         }
-        else if (in.equals(">") && partyY + 1 < 5)
+        else if (in.equals(">") && partyY + 1 < 6)
         {
             partyY += 1;
         }
