@@ -72,7 +72,7 @@ public class GameRunner
             
             System.out.println("The Map:");
             new GameWorld();
-            GameWorld.printMap(2, 2);
+            GameWorld.printMap(party.getX(), party.getY());
             
             // TODO: insert lore and worldbuilding here
 

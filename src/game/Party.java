@@ -58,4 +58,28 @@ public class Party {
     {
         return partyY;
     }
+
+    public void moveParty(String in)
+    {
+        if (in.equals("^") && partyX - 1 > -1)
+        {
+            partyX -= 1;
+        }
+        else if (in.equals("v") && partyX + 1 < 5)
+        {
+            partyX += 1;
+        }
+        else if (in.equals("<") && partyY - 1 > -1)
+        {
+            partyX -= 1;
+        }
+        else if (in.equals(">") && partyY + 1 < 5)
+        {
+            partyX += 1;
+        }
+        else
+        {
+            System.out.println("Invalid move");
+        }
+    }
 }

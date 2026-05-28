@@ -16,15 +16,17 @@ public class GameWorld
 
     public static void printMap(int x, int y)
     {
-        map[x][y] = new Tile(map[x][y].getTileType());
+        Tile[][] trackMap = map;
 
-        for (int mapRow = 0; mapRow < map.length; mapRow++) 
+        trackMap[x][y] = new Tile(trackMap[x][y].getTileType());
+
+        for (int mapRow = 0; mapRow < trackMap.length; mapRow++) 
         {
             for (int tileLine = 0; tileLine < 5; tileLine++) 
             {
                 for (int mapCol = 0; mapCol < map[mapRow].length; mapCol++) 
                 {
-                    System.out.print(map[mapRow][mapCol].getTile()[tileLine]);
+                    System.out.print(trackMap[mapRow][mapCol].getTile()[tileLine]);
                 }
                 System.out.println();
             }
