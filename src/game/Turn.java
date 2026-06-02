@@ -58,5 +58,9 @@ public class Turn
             party.moveParty(moveSelect);
             GameWorld.printMap(party.getX(), party.getY());
         }
+        else
+        {
+            System.out.println("Invalid action");
+        }
     }
 }

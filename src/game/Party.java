@@ -1,5 +1,6 @@
 package game;
-public class Party {
+public class Party 
+{
     
     private String partyName;
     private int partySize;
@@ -65,7 +66,7 @@ public class Party {
         {
             partyX -= 1;
         }
-        else if (in.equals("v") && partyX + 1 < 6)
+        else if (in.equals("v") && partyX + 1 < 5)
         {
             partyX += 1;
         }
@@ -73,7 +74,7 @@ public class Party {
         {
             partyY -= 1;
         }
-        else if (in.equals(">") && partyY + 1 < 6)
+        else if (in.equals(">") && partyY + 1 < 5)
         {
             partyY += 1;
         }
