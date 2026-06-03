@@ -25,6 +25,7 @@ public class Entity {
     public void setLevel(int newLevel)
     {
         level = newLevel;
+        health += 10 * newLevel;
     }
 
     public int getLevel()

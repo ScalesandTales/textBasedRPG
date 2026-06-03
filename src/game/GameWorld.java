@@ -15,6 +15,11 @@ public class GameWorld
         }
     }
 
+    public static Tile[][] getMap()
+    {
+        return map;
+    }
+
     public static void printMap(int x, int y)
     {
         trackMap = new Tile[map.length][map[0].length];

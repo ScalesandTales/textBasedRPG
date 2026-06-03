@@ -8,6 +8,8 @@ public class Party
     private int counter = 0;
     private int partyX = 2;
     private int partyY = 2;
+    private int partyXP = 0;
+    private int partyLevel = 1;
     
     public Party(String inName, int size)
     {
@@ -39,7 +41,7 @@ public class Party
 
     public String actionList()
     {
-        return "1: Character Select\n2: Map\n3: Move"; // TODO: other options to be implemented
+        return "1: Party Select\n2: Map\n3: Move"; // TODO: other options to be implemented
     }
 
     public void partyList()
@@ -47,6 +49,46 @@ public class Party
         for(int i = 0; i < charList.length; i++)
         {
             System.out.println(i + ". " + charList[i].getName());
+        }
+    }
+
+    public void getInfo()
+    {
+        System.out.println("Party Name: " + partyName);
+        System.out.println("Party Level: " + partyLevel);
+        System.out.println("Party XP: " + partyXP);
+        System.out.println("Characters:");
+        partyList();
+    }
+
+    public void listCharactersByHealthAscending()
+    {
+        PlayerCharacter[] sorted = charList.clone();
+
+        for (int i = 0; i < sorted.length - 1; i++)
+        {
+            int minIndex = i;
+
+            for (int j = i + 1; j < sorted.length; j++)
+            {
+                if (sorted[j] != null && (sorted[minIndex] == null || sorted[j].getHealth() < sorted[minIndex].getHealth()))
+                {
+                    minIndex = j;
+                }
+            }
+
+            PlayerCharacter temp = sorted[i];
+            sorted[i] = sorted[minIndex];
+            sorted[minIndex] = temp;
+        }
+
+        for (int i = 0; i < sorted.length; i++)
+        {
+            if (sorted[i] != null)
+            {
+                System.out.println((i + 1) + ". " + sorted[i].getName()
+                        + " - " + sorted[i].getHealth() + " HP");
+            }
         }
     }
 
@@ -81,6 +123,29 @@ public class Party
         else
         {
             System.out.println("Invalid move");
+        }
+    }
+
+    public int getXP()
+    {
+        return partyXP;
+    }
+
+    public void addXP(int xp)
+    {
+        partyXP += xp;
+    }
+
+    public void levelUpIfAble()
+    {
+        if (partyXP >= partyLevel * 10)
+        {
+            partyLevel++;
+            System.out.println("Your party leveled up to level " + partyLevel + "!");
+            for (int i = 0; i < charList.length; i++)
+            {
+                charList[i].setLevel(partyLevel);
+            }
         }
     }
 }

@@ -116,21 +116,25 @@ public class PlayerCharacter extends Entity {
 
     public String useItem(String use)
     {
-        if (use.equals("healing potion"))
+        if (use.equals("Healing Potion"))
         {
             return drinkHealthPotion();
         }
-        else if (use.equals("mana potion"))
+        else if (use.equals("Mana Potion"))
         {
             return drinkManaPotion();
         }
-        else if (use.equals("gold"))
+        else if (use.equals("Gold"))
         {
             return "not implemented yet";
         }
-        else if (use.equals("rope"))
+        else if (use.equals("Rope"))
         {
             return "not implemented yet";
+        }
+        else if (use.equals("-1"))
+        {
+            return "Cancelled";
         }
         else
         {
@@ -145,12 +149,12 @@ public class PlayerCharacter extends Entity {
 
     public String playerActionList()
     {
-        return "1: Move\n2: Attack\n3: Defend\n4: Use Item\n5: Cast Spell"; // TODO: implement spell and item systems
+        return "1: Use Item";
     }
 
     public String toString()
     {
-        return "Name: " + getName() + "\nClass: " + charClass + "\nHealth: " + getHealth() + "\nMana: " + mana;
+        return "Name: " + getName() + "\nLevel: " + getLevel() + "\nClass: " + charClass + "\nHealth: " + getHealth() + "\nMana: " + mana;
     }
 }
 
