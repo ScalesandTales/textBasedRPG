@@ -162,7 +162,6 @@ defeat its forces, and restore peace to the land.""");
                 }
                 turnCount++;
             }
-            
         }
         else
         {

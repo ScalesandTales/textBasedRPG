@@ -51,5 +51,6 @@ public class Entity {
     public void changeHealth(int change)
     {
         health += change;
+        System.out.println(name + "'s health is: " + health);
     }
 }

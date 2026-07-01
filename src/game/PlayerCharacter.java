@@ -4,6 +4,7 @@ public class PlayerCharacter extends Entity {
     private String charClass;
     private int mana;
     private Inventory inventory;
+    private boolean dead = false;
 
     public PlayerCharacter(String name, String playerClass, int health, int mana)
     {
@@ -21,6 +22,21 @@ public class PlayerCharacter extends Entity {
     public int getMana()
     {
         return mana;
+    }
+
+    public void changeMana(int change)
+    {
+        mana += change;
+    }
+
+    public boolean isDead()
+    {
+        return dead;
+    }
+
+    public void setDead(boolean dead)
+    {
+        this.dead = dead;
     }
 
     public String drinkHealthPotion()
@@ -149,7 +165,12 @@ public class PlayerCharacter extends Entity {
 
     public String playerActionList()
     {
-        return "1: Use Item";
+        return "1: Use Item\n2: Use Weapon\n3: Cast Spell";
+    }
+
+    public void combatActionList()
+    {
+        System.out.println("1: Use Item\n2: Use Weapon\n3: Cast Spell");
     }
 
     public String toString()

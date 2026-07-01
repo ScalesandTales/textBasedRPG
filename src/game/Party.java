@@ -10,6 +10,7 @@ public class Party
     private int partyY = 2;
     private int partyXP = 0;
     private int partyLevel = 1;
+    private int partyModifer = 0;
     
     public Party(String inName, int size)
     {
@@ -59,6 +60,16 @@ public class Party
         System.out.println("Party XP: " + partyXP);
         System.out.println("Characters:");
         partyList();
+    }
+
+    public void partyMod(int mod)
+    {
+        partyModifer += mod;
+    }
+
+    public int getPartyMod()
+    {
+        return partyModifer;
     }
 
     public void listCharactersByHealthAscending()
@@ -126,6 +137,14 @@ public class Party
         }
     }
 
+    public void partyAffect(int effect)
+    {
+        for (int i = 0; i < charList.length; i++)
+        {
+            charList[i].changeHealth(effect);
+        }
+    }
+
     public int getXP()
     {
         return partyXP;
@@ -147,5 +166,15 @@ public class Party
                 charList[i].setLevel(partyLevel);
             }
         }
+    }
+
+    public int getPartyLevel()
+    {
+        return partyLevel;
+    }
+
+    public int getPartyBonus()
+    {
+        return partyLevel + partyModifer;
     }
 }
