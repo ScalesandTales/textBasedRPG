@@ -1,6 +1,8 @@
 package game;
 public class Enemy extends Entity
 {
+    private Boolean dead = false;
+
     public Enemy(String name, int level)
     {
         super(name, level, 0);
@@ -17,5 +19,15 @@ public class Enemy extends Entity
         {
             setHealth(25);
         }
+    }
+
+    public Boolean isDead()
+    {
+        return dead;
+    }
+
+    public void setDead(Boolean dead)
+    {
+        this.dead = dead;
     }
 }

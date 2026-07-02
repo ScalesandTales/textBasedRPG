@@ -13,14 +13,15 @@ public class Encounter
     private int tileType;
     private int enemyNum = (int)(Math.random() * 3 + 1);
     private ArrayList<Enemy> enemyList = new ArrayList<>();
+    private ArrayList<PlayerCharacter> partyList = new ArrayList<>();
     private Entity[] turnList;
-    private Scanner scanner;
+    private final Scanner scanner;
     private int input;
     
     
-    public Encounter(Party party, Tile[][] map, int x, int y)
+    public Encounter(Party party, Tile[][] map, int x, int y, Scanner scanner)
     {
-        scanner = new Scanner(System.in);
+        this.scanner = scanner;
         int input = 0;
         tileType = map[x][y].getTileType();
 
@@ -44,6 +45,11 @@ public class Encounter
                 Imp imp = new Imp(GameRunner.getTurnCount());
                 enemyList.add(imp);
             }
+        }
+
+        for (int i = 0; i < party.getSize(); i++)
+        {
+            partyList.add(party.getCharacter(i));
         }
 
         int entityNum = enemyList.size() + party.getSize();
@@ -72,6 +78,19 @@ public class Encounter
         }
     }
 
+    public int getKoboldAmount()
+    {
+        int amount = 0;
+        for (int i = 0; i < enemyList.size(); i++)
+        {
+            if (enemyList.get(i) instanceof Kobold)
+            {
+                amount++;
+            }
+        }
+        return amount;
+    }
+
     private void printTurnList(int turn)
     {
         int x = 0;
@@ -95,8 +114,7 @@ public class Encounter
             System.out.println(i + ". " + enemyList.get(i).getName());
         }
         
-        int i = scanner.nextInt();
-        return i;
+        return GameRunner.readScanner(scanner);
     }
 
     public void playEncounter(Party party)
@@ -134,7 +152,7 @@ public class Encounter
                 {
                     Fighter actFighter = (Fighter) turnList[turn];
                     activePC.combatActionList();
-                    input = scanner.nextInt();
+                    input = GameRunner.readScanner(scanner);
                     
                     if (input == 1)
                     {
@@ -163,7 +181,7 @@ public class Encounter
                 {
                     Wizard actWizard = (Wizard) activePC;
                     activePC.combatActionList();
-                    input = scanner.nextInt();
+                    input = GameRunner.readScanner(scanner);
 
                    if (input == 1)
                     {
@@ -192,7 +210,7 @@ public class Encounter
                 {
                     Bard actBard = (Bard) activePC;
                     activePC.combatActionList();
-                    input = scanner.nextInt();
+                    input = GameRunner.readScanner(scanner);
 
                     if (input == 1)
                     {
@@ -221,7 +239,7 @@ public class Encounter
                 {
                     Cleric actCleric = (Cleric) activePC;
                     activePC.combatActionList();
-                    input = scanner.nextInt();
+                    input = GameRunner.readScanner(scanner);
 
                     if (input == 1)
                     {
@@ -253,8 +271,24 @@ public class Encounter
             }
             else
             {
-                //Enemy enemy = (Enemy) turnList[turn];
-                //enemy.attack(party);
+                Enemy actEnemy = (Enemy) turnList[turn];
+                int rand = (int)(Math.random() * partyList.size());
+
+                if (actEnemy instanceof Goblin && actEnemy.isDead() == false)
+                {
+                    Goblin goblin = (Goblin) actEnemy;
+                    partyList.get(rand).changeHealth(goblin.attack(this));
+                }
+                else if (actEnemy instanceof Imp && actEnemy.isDead() == false)
+                {
+                    Imp imp = (Imp) actEnemy;
+                    partyList.get(rand).changeHealth(imp.attack(this));
+                }
+                else if (actEnemy instanceof Kobold)
+                {
+                    Kobold kobold = (Kobold) actEnemy;
+                    partyList.get(rand).changeHealth(kobold.attack(this));
+                } 
             }
 
             for (int i = 0; i < enemyList.size(); i++)
@@ -262,16 +296,18 @@ public class Encounter
                 if (enemyList.get(i).getHealth() <= 0)
                 {
                     System.out.println(enemyList.get(i).getName() + " has been defeated!");
+                    enemyList.get(i).setDead(true);
                     enemyList.remove(i);
                 }
             }
 
-            for (int i = 0; i < party.getSize(); i++)
+            for (int i = 0; i < partyList.size(); i++)
             {
-                if (party.getCharacter(i).getHealth() <= 0)
+                if (partyList.get(i).getHealth() <= 0)
                 {
-                    System.out.println(party.getCharacter(i).getName() + " has been defeated!");
-                    turnList[i] = null;
+                    System.out.println(partyList.get(i).getName() + " has been defeated!");
+                    partyList.get(i).setDead(true);
+                    partyList.remove(i);
                 }
             }
                 
@@ -291,6 +327,5 @@ public class Encounter
             }
             turn++;
         }
-        scanner.close();
     }
 }

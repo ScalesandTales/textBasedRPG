@@ -26,7 +26,7 @@ public class GameRunner
     public static int readScanner(Scanner input)
     {
         int select;
-        try 
+        try
         {
             select = input.nextInt();
         }
@@ -87,6 +87,7 @@ public class GameRunner
                             while (true)
                             {
                                 System.out.println("Character class: ");
+                                System.out.println("Options: fighter, wizard, bard, cleric");
                                 String inClass = input.nextLine();
                                 if (inClass.equals("fighter"))
                                 {
@@ -131,15 +132,15 @@ public class GameRunner
             System.out.println();
             
             System.out.println("""
-A party of adventurers sets out on a journey across the kingdom after reports of 
-dangerous monsters begin appearing in every region. Traveling through forests, 
-mountains, deserts, and swamps, they face goblin warbands, giant spiders, trolls, 
-wyverns, and other fearsome creatures threatening towns and trade routes. Along 
-the way, they grow stronger, uncover ancient secrets, and form close bonds 
-through their shared battles. Their travels eventually reveal that the monsters 
-are being driven from their habitats by a powerful beast gathering an army in 
-the far north. The party embarks on one final quest to confront the creature, 
-defeat its forces, and restore peace to the land.""");
+            A party of adventurers sets out on a journey across the kingdom after reports of 
+            dangerous monsters begin appearing in every region. Traveling through forests, 
+            mountains, deserts, and swamps, they face goblin warbands, giant spiders, trolls, 
+            wyverns, and other fearsome creatures threatening towns and trade routes. Along 
+            the way, they grow stronger, uncover ancient secrets, and form close bonds 
+            through their shared battles. Their travels eventually reveal that the monsters 
+            are being driven from their habitats by a powerful beast gathering an army in 
+            the far north. The party embarks on one final quest to confront the creature, 
+            defeat its forces, and restore peace to the land.""");
 
             System.out.println();
             
@@ -150,10 +151,12 @@ defeat its forces, and restore peace to the land.""");
             while(true)
             {
                 Turn.turn(party, input);
+                
                 int randomEncounter = (int) (Math.random() * 2) + 1;
+                
                 if (randomEncounter == 1 && GameRunner.getLastTurnAction() == 3)
                 {
-                    Encounter encounter = new Encounter(party, GameWorld.getMap(), party.getX(), party.getY());
+                    Encounter encounter = new Encounter(party, GameWorld.getMap(), party.getX(), party.getY(), input);
                     encounter.playEncounter(party);
                 }
                 else
@@ -161,6 +164,12 @@ defeat its forces, and restore peace to the land.""");
                     Turn.turn(party, input);
                 }
                 turnCount++;
+                
+                if (turnCount > 5)
+                {
+                    System.out.println("You have reached the end of the demo. Thank you for playing!");
+                    break;
+                }
             }
         }
         else
